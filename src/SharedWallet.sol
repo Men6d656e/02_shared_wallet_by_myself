@@ -11,25 +11,27 @@ error InsufficientAllowance(uint256 requested, uint256 available);
 error WithdrawalFailed();
 
 contract SharedWallet {
-    address public immutable owner;
+    address public immutable OWNER;
 
     mapping(address => uint256) public allowances;
 
     modifier onlyOwner() {
-        if (msg.sender != owner) {
-            revert OnlyOwner();
-        }
+        _checkOwner();
         _;
     }
 
+    function _checkOwner() internal view {
+        if (msg.sender != OWNER) {
+            revert OnlyOwner();
+        }
+    }
+
     constructor() {
-        owner = msg.sender;
+        OWNER = msg.sender;
     }
 
     receive() external payable {
-        if (msg.sender != owner) {
-            revert OnlyOwner();
-        }
+        _checkOwner();
         emit Deposit(msg.sender, msg.value);
     }
 
@@ -45,7 +47,7 @@ contract SharedWallet {
 
     function withdraw(uint256 _amount) external {
         if (_amount == 0) revert InvalidAmount();
-        if (msg.sender != owner) {
+        if (msg.sender != OWNER) {
             uint256 allowed = allowances[msg.sender];
             if (_amount > allowed) {
                 revert InsufficientAllowance(_amount, allowed);
