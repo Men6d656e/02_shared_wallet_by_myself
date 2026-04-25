@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How it Works - Shared Wallet</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .guide-section {
+            margin-bottom: 3rem;
+        }
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .step-card {
+            padding: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            transition: var(--transition);
+        }
+        .step-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .owner-step .step-number { background: #F59E0B; } /* Warning/Owner color */
+        .user-step .step-number { background: #3B82F6; }  /* User color */
+        
+        .header-desc {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .guide-intro {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" />
+                <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>SharedWallet Guide</span>
+        </div>
+        <div class="nav-actions">
+            <a href="index.html" class="btn secondary-btn">&larr; Back to App</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="app-header">
+            <h1>How The Shared Wallet Works</h1>
+            <p class="mt-2 header-desc">Understand the core flow of decentralized fund management between the Owner and the Users. It's built on a secure, gas-optimized Smart Contract.</p>
+        </header>
+
+        <section class="guide-section">
+            <h2>👑 The Owner's Flow</h2>
+            <p class="mt-2 guide-intro">The owner is the sole administrator of the wallet. They provide the liquidity and determine who gets access.</p>
+            <div class="step-grid">
+                <div class="step-card owner-step">
+                    <div class="step-number">1</div>
+                    <h3>Deploy & Own</h3>
+                    <p class="mt-2">The creator of the smart contract automatically becomes the immutable Owner. Only one owner exists per contract.</p>
+                </div>
+                <div class="step-card owner-step">
+                    <div class="step-number">2</div>
+                    <h3>Deposit Funds</h3>
+                    <p class="mt-2">The owner deposits ETH into the contract. The contract securely acts as a vault to hold this ETH on-chain.</p>
+                </div>
+                <div class="step-card owner-step">
+                    <div class="step-number">3</div>
+                    <h3>Set Allowances</h3>
+                    <p class="mt-2">The owner assigns a specific withdrawal limit (allowance) to different user addresses, strictly defining how much they can take.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="guide-section" style="margin-top: 4rem;">
+            <h2>👤 The User's Flow</h2>
+            <p class="mt-2 guide-intro">Users are granted access by the owner. They cannot deposit, but they can securely withdraw up to their assigned limit.</p>
+            <div class="step-grid">
+                <div class="step-card user-step">
+                    <div class="step-number">1</div>
+                    <h3>Connect Wallet</h3>
+                    <p class="mt-2">A user connects their Web3 wallet (like MetaMask). The app detects their role and allocated allowance automatically.</p>
+                </div>
+                <div class="step-card user-step">
+                    <div class="step-number">2</div>
+                    <h3>Check Allowance</h3>
+                    <p class="mt-2">The user sees exactly how much ETH they are allowed to withdraw from the main pool in real-time.</p>
+                </div>
+                <div class="step-card user-step">
+                    <div class="step-number">3</div>
+                    <h3>Withdraw Funds</h3>
+                    <p class="mt-2">The user requests a withdrawal. The smart contract validates the amount against their limit before executing the transfer.</p>
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem;">
+            <a href="index.html" class="btn primary-btn" style="font-size: 1.1rem; padding: 0.75rem 2rem;">Ready? Open the App</a>
+        </div>
+    </main>
+</body>
+</html>

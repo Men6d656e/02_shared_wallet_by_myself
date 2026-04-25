@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Wallet DApp</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Ethers.js v6 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.10.0/ethers.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="toast-container"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" />
+                <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>SharedWallet</span>
+        </div>
+        <div class="nav-actions">
+            <div id="network-badge" class="badge">Not Connected</div>
+            <button id="connect-btn" class="btn primary-btn">Connect Wallet</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="app-header">
+            <h1>Decentralized Fund Management</h1>
+            <p>Securely manage deposits, assign allowances, and withdraw funds seamlessly.</p>
+        </header>
+
+        <!-- Contract Details -->
+        <section class="card stats-card">
+            <div class="stat">
+                <span class="stat-label">Contract Balance</span>
+                <h2 id="contract-balance">0.00 ETH</h2>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Your Wallet Balance</span>
+                <h2 id="wallet-balance">0.00 ETH</h2>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Your Current Role</span>
+                <h2 id="user-role" class="role-badge user-role">Unknown</h2>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Your Allowance</span>
+                <h2 id="user-allowance">0.00 ETH</h2>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <!-- Owner Panel -->
+            <section class="card panel owner-panel" id="owner-panel">
+                <div class="panel-header">
+                    <h3>Owner Controls</h3>
+                    <span class="badge owner-badge">Admin</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="deposit-amount">Deposit Funds (ETH)</label>
+                    <div class="input-group">
+                        <input type="number" id="deposit-amount" placeholder="0.00" step="0.01" min="0">
+                        <button id="deposit-btn" class="btn primary-btn">Deposit</button>
+                    </div>
+                    <small>Only the contract owner can deposit funds.</small>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="form-group">
+                    <label for="allowance-address">Set User Allowance</label>
+                    <input type="text" id="allowance-address" placeholder="0x...">
+
+                    <div class="input-group mt-2">
+                        <input type="number" id="allowance-amount" placeholder="Amount in ETH" step="0.01" min="0">
+                        <button id="set-allowance-btn" class="btn secondary-btn">Set Allowance</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Panel -->
+            <section class="card panel user-panel" id="user-panel">
+                <div class="panel-header">
+                    <h3>Withdraw Funds</h3>
+                </div>
+
+                <div class="form-group">
+                    <label for="withdraw-amount">Amount to Withdraw (ETH)</label>
+                    <div class="input-group">
+                        <input type="number" id="withdraw-amount" placeholder="0.00" step="0.01" min="0">
+                        <button id="withdraw-btn" class="btn primary-btn">Withdraw</button>
+                    </div>
+                    <small>You can only withdraw up to your allowed limit.</small>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="info-box">
+                    <h4>How it works</h4>
+                    <p>1. The Owner deposits ETH into the shared wallet.</p>
+                    <p>2. The Owner sets an allowance for specific addresses.</p>
+                    <p>3. Users can withdraw ETH up to their set allowance limit.</p>
+                    <p class="mt-2"><em>For more knowledge, see the <a href="how-it-works.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">How it works page</a>.</em></p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
