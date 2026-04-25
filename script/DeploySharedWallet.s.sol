@@ -5,15 +5,11 @@ import {Script} from "forge-std/Script.sol";
 import {SharedWallet} from "../src/SharedWallet.sol";
 
 contract DeploySharedWallet is Script {
-    SharedWallet public sharedWallet;
-
-    function setUp() public {}
-
-    function run() public {
+    function run() external returns (SharedWallet) {
         vm.startBroadcast();
 
-        sharedWallet = new SharedWallet();
-
+        SharedWallet wallet = new SharedWallet();
         vm.stopBroadcast();
+        return wallet;
     }
 }

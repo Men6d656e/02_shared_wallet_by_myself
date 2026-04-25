@@ -1,16 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.25;
 
-event Deposit(address indexed from, uint256 amount);
-event AllowanceSet(address indexed user, uint256 amount);
-event Withdrawal(address indexed user, uint256 amount);
-
-error OnlyOwner();
-error InvalidAmount();
-error InsufficientAllowance(uint256 requested, uint256 available);
-error WithdrawalFailed();
-
 contract SharedWallet {
+    event Deposit(address indexed from, uint256 amount);
+    event AllowanceSet(address indexed user, uint256 amount);
+    event Withdrawal(address indexed user, uint256 amount);
+
+    error OnlyOwner();
+    error InvalidAmount();
+    error InsufficientAllowance(uint256 requested, uint256 available);
+    error WithdrawalFailed();
     address public immutable OWNER;
 
     mapping(address => uint256) public allowances;
@@ -55,7 +54,7 @@ contract SharedWallet {
             allowances[msg.sender] -= _amount;
         }
 
-        (bool success,) = msg.sender.call{value: _amount}("");
+        (bool success, ) = msg.sender.call{value: _amount}("");
 
         if (!success) {
             revert WithdrawalFailed();
