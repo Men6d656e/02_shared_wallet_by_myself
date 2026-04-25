@@ -6,9 +6,9 @@ import {SharedWallet} from "../src/SharedWallet.sol";
 
 contract SharedWalletTest is Test {
     SharedWallet wallet;
-    address owner = address(1);
-    address user1 = address(2);
-    address user2 = address(3);
+    address owner = address(1); // 0x0000000000000000000000000000000000000001
+    address user1 = address(2); // 0x0000000000000000000000000000000000000002
+    address user2 = address(3); // 0x0000000000000000000000000000000000000003
 
     function setUp() public {
         vm.prank(owner);
