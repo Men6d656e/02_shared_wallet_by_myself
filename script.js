@@ -1,9 +1,9 @@
 // --- Configuration ---
 // IMPORTANT: Update this address with your deployed contract address from `make deploy-anvil`
-const CONTRACT_ADDRESS = "0x663F3ad617193148711d28f5334eE4Ed07016602";
+const CONTRACT_ADDRESS = "0xd17F0535931b108c6a51bc4D76b744398c9e6110";
 
 const ABI = [
-  "function owner() view returns (address)",
+  "function OWNER() view returns (address)",
   "function allowances(address) view returns (uint256)",
   "function deposit() payable",
   "function setAllowance(address _user, uint256 _amount)",
@@ -125,7 +125,7 @@ async function updateData() {
 
     // Determine Role
     if (!ownerAddress) {
-      ownerAddress = await contract.owner();
+      ownerAddress = await contract.OWNER();
     }
 
     const isOwner = currentAccount.toLowerCase() === ownerAddress.toLowerCase();

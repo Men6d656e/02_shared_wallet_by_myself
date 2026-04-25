@@ -1,3 +1,5 @@
+-include .env
+
 .PHONY: all test clean deploy-anvil
 
 all: clean install build
@@ -31,8 +33,18 @@ anvil:
 	anvil
 
 # Deploy to Anvil (using default Anvil 0th private key)
-deploy-anvil:
-	forge script script/DeploySharedWallet.s.sol:DeploySharedWallet --rpc-url http://127.0.0.1:8545 --interactives 1 --broadcast --force
+deploy-anvil: clean build test
+	forge script script/DeploySharedWallet.s.sol --rpc-url $(ANVIL_RPC_URL) --private-key $(ANVIL_PRIVATE_KEY) --broadcast --force
+
+
+# Uses variables from .env and asks for private key interactively
+deploy-sepolia: clean build test
+	forge script script/DeploySharedWallet.s.sol \
+	--rpc-url $(SEPOLIA_RPC_URL) \
+	--broadcast \
+	--interactives 1 \
+	--verify \
+	--etherscan-api-key $(EATHER_SCAN_API_KEY)
 
 # Security check with Slither (if installed)
 slither:
