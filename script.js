@@ -1,6 +1,6 @@
 // --- Configuration ---
 // IMPORTANT: Update this address with your deployed contract address from `make deploy-anvil`
-const CONTRACT_ADDRESS = "0xd17F0535931b108c6a51bc4D76b744398c9e6110";
+const CONTRACT_ADDRESS = "0x73087A737816ae623E2C9fb7175e1AcC1Dca99B1";
 
 const ABI = [
   "function OWNER() view returns (address)",
